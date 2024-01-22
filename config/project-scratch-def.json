@@ -1,7 +1,7 @@
 {
   "orgName": "abhinav company",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
+  "features": ["EnableSetPasswordInApi", "EinsteinGPTForDevelopers"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
@@ -9,5 +9,6 @@
     "mobileSettings": {
       "enableS1EncryptedStoragePref2": false
     }
-  }
+  },
+  "hasSampleData": true
 }
