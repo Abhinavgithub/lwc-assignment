@@ -24,7 +24,6 @@ export default class PicklistComponent extends LightningElement {
       const getQueryResults = JSON.parse(
         await getQueryRecords({ keyword: searchKey })
       ).flat();
-      console.log(`getQueryResults = {$getQueryResults}`);
       getQueryResults.forEach((record) => {
         console.log("record ->" + record);
         let queryRecord = {};
@@ -51,7 +50,7 @@ export default class PicklistComponent extends LightningElement {
       this.results = undefined;
       this.error = error;
       this.isLoading = false;
-      console.log("error: " + error);
+      console.log("error: " + JSON.stringify(error));
     }
   }
 }
