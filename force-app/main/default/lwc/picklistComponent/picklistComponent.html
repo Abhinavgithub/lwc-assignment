@@ -37,40 +37,69 @@
                                         oninput={handleChange} value={searchTerm} />
                                 </div>
                             </div>
-                            <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"
-                                tabindex="0" aria-busy="false">
-                                <template lwc:if={showPicklist}>
-                                    <template lwc:if={isLoading}>
-                                        <lightning-spinner alternative-text="Loading" size="xx-small"
-                                            variant="base"></lightning-spinner>
-                                    </template>
-                                    <template lwc:elseif={showPicklist}>
-                                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
-                                            <template for:each={results} for:item="item">
-                                                <li key={item.id} role="presentation" class="slds-listbox__item">
-                                                    <div class="slds-grid slds-gutters_x-small">
-                                                        <div class="slds-col slds-size_1-of-8 slds-p-horizontal_medium">
-                                                            <lightning-icon icon-name={item.icon}
-                                                                alternative-text={item.type} size="medium"
-                                                                variant="inverse"></lightning-icon>
-                                                        </div>
-                                                        <div class="slds-col slds-size_7-of-8 slds-p-horizontal_medium">
-                                                            <div class="slds-grid slds-grid_vertical">
-                                                                <div class="slds-col">
-                                                                    {item.name}
-                                                                </div>
-                                                                <div class="slds-col">
-                                                                    {item.details}
-                                                                </div>
+
+                            <template lwc:if={showPicklist}>
+                                <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"
+                                    tabindex="0" aria-busy="false">
+                                    <ul class="slds-listbox slds-listbox_vertical slds-has-dividers_bottom-space"
+                                        role="presentation">
+                                        <template for:each={results} for:item="item">
+                                            <li key={item.id} role="presentation" class="slds-listbox__item slds-item">
+                                                <div class="slds-grid slds-gutters_x-small">
+                                                    <div class="slds-col slds-size_1-of-8 slds-p-horizontal_medium">
+                                                        <lightning-icon icon-name={item.icon}
+                                                            alternative-text={item.type} size="medium"
+                                                            variant="inverse"></lightning-icon>
+                                                    </div>
+                                                    <div class="slds-col slds-size_7-of-8 slds-p-horizontal_medium">
+                                                        <div class="slds-grid slds-grid_vertical">
+                                                            <div class="slds-col">
+                                                                {item.name}
+                                                            </div>
+                                                            <div class="slds-col">
+                                                                {item.details}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </li>
-                                            </template>
-                                        </ul>
-                                    </template>
-                                </template>
-                            </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                            <template lwc:elseif={showNorecords}>
+                                <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"
+                                    tabindex="0" aria-busy="false">
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <li role="presentation" class="slds-listbox__item">
+                                            <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                                role="option">
+                                                <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                                <span class="slds-media__body">
+                                                    <span class="slds-truncate">No Records</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            <template lwc:elseif={isLoading}>
+                                <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"
+                                    tabindex="0" aria-busy="false">
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <li role="presentation" class="slds-listbox__item">
+                                            <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                                role="option">
+                                                <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                                <span class="slds-media__body">
+                                                    <lightning-spinner alternative-text="Loading" size="small"
+                                                        variant="base"></lightning-spinner>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </div>

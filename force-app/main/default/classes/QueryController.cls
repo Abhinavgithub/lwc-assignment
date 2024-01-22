@@ -2,7 +2,7 @@
  * @description       : To fetch records from objects and pass to LWC
  * @author            : Abhinav Singh
  * @group             : 
- * @last modified on  : 01-21-2024
+ * @last modified on  : 01-22-2024
  * @last modified by  : Abhinav Singh
 **/
 public with sharing class QueryController {
@@ -12,7 +12,7 @@ public with sharing class QueryController {
             List<List<SObject>> searchList = [
             FIND :keyword
             IN NAME FIELDS
-            RETURNING Account(Name,Industry,AccountNumber), Contact(Name,Email,Phone), Lead(Name,Rating,Status)
+            RETURNING Account(Name,Website,TickerSymbol), Contact(Name,Email,Phone), Lead(Name,Company,Title)
             ];
         return JSOn.serialize(searchList);
         } catch (Exception e) {

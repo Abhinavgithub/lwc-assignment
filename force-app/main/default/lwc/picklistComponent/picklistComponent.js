@@ -3,8 +3,9 @@ import getQueryRecords from "@salesforce/apex/QueryController.getQueryRecords";
 export default class PicklistComponent extends LightningElement {
   searchTerm = "";
   results = [];
-  isLoading = "false";
-  showPicklist = "false";
+  isLoading = false;
+  showPicklist = false;
+  showNorecords = false;
 
   handleChange(event) {
     let searchTerm = event.target.value;
@@ -15,6 +16,9 @@ export default class PicklistComponent extends LightningElement {
       this.handleSearch(this.searchTerm);
     } else {
       this.results = undefined;
+      this.showPicklist = false;
+      this.showNorecords = false;
+      this.isLoading = false;
     }
   }
   async handleSearch(searchKey) {
@@ -34,18 +38,28 @@ export default class PicklistComponent extends LightningElement {
           "icon"
         ] = `standard:${record.attributes.type.toLowerCase()}`;
         if (record.attributes.type.toLowerCase() === "account") {
-          queryRecord["details"] = record.Industry + " " + record.AccountNumber;
+          queryRecord["details"] = record.Website + " " + record.TickerSymbol;
         } else if (record.attributes.type.toLowerCase() === "contact") {
           queryRecord["details"] = record.Email + " " + record.Phone;
         } else if (record.attributes.type.toLowerCase() === "lead") {
-          queryRecord["details"] = record.Rating + " " + record.Status;
+          queryRecord["details"] = record.Title + " " + record.Company;
         }
         console.log("searched Record =" + JSON.stringify(queryRecord));
         results.push(queryRecord);
       });
       this.results = results;
       this.isLoading = false;
-      this.showPicklist = true;
+      console.log(`Number of records = ${results.length}`);
+      if (results.length !== 0) {
+        this.showPicklist = true;
+        this.showNorecords = false;
+      } else {
+        this.showNorecords = true;
+        this.showPicklist = false;
+      }
+      console.log(
+        `showNorecords = ${this.showNorecords} ; showPicklist = ${this.showPicklist} `
+      );
     } catch (error) {
       this.results = undefined;
       this.error = error;
