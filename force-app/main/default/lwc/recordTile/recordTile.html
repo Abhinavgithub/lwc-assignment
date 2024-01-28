@@ -1,0 +1,34 @@
+<!--
+  @description       : Record tile to display the selected record
+  @author            : Abhinav Singh
+  @group             : 
+  @last modified on  : 01-28-2024
+  @last modified by  : Abhinav Singh
+-->
+<template>
+    <template lwc:if={displayRecord}>
+        <div class="slds-box slds-box_small">
+            <div class="slds-text-heading_medium slds-text-align_left slds-var-p-bottom_small slds-border_bottom">
+                <lightning-icon class="slds-var-p-around_xx-small" icon-name={displayRecord.icon}
+                    alternative-text={displayRecord.type} size="x-small" variant="inverse"></lightning-icon>
+                <span class="slds-var-p-around_xx-small"><strong>{displayRecord.type}</strong></span>
+            </div>
+            <div class="slds-var-p-around_xx-small">
+                <ul>
+                    <template for:each={displayRecord.fields} for:item="record">
+                        <li key={record.label}>
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <span><strong>{record.label}</strong></span>
+                                </div>
+                                <div class="slds-col slds-size_2-of-3">
+                                    <span>{record.value}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </template>
+</template>

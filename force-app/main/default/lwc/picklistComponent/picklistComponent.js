@@ -3,7 +3,7 @@ import getQueryRecords from "@salesforce/apex/QueryController.getQueryRecords";
 export default class PicklistComponent extends LightningElement {
   searchTerm = "";
   results = [];
-  selectedRecord = [];
+  selectedRecords = [];
   isLoading = false;
   showPicklist = false;
   showNorecords = false;
@@ -12,11 +12,13 @@ export default class PicklistComponent extends LightningElement {
     console.log(
       "Selected Record = " + JSON.stringify(event.currentTarget.dataset)
     );
-    this.selectedRecord = {
-      ...this.selectedRecord,
-      ...event.currentTarget.dataset
-    };
-    console.log(this.selectedRecord);
+    this.selectedRecords = [
+      ...this.selectedRecords,
+      event.currentTarget.dataset
+    ];
+    //hiding the result on selecting record
+    this.showPicklist = false;
+    console.log(this.selectedRecords);
   }
 
   handleChange(event) {
