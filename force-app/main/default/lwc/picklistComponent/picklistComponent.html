@@ -44,7 +44,8 @@
                                     <ul class="slds-listbox slds-listbox_vertical slds-has-dividers_bottom-space"
                                         role="presentation">
                                         <template for:each={results} for:item="item">
-                                            <li key={item.id} role="presentation" class="slds-listbox__item slds-item">
+                                            <li key={item.id} role="presentation" class="slds-listbox__item slds-item"
+                                                data-id={item.id} data-type={item.type} onclick={handleClick}>
                                                 <div class="slds-grid slds-gutters_x-small">
                                                     <div class="slds-col slds-size_1-of-8 slds-p-horizontal_medium">
                                                         <lightning-icon icon-name={item.icon}

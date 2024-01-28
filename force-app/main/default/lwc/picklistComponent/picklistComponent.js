@@ -3,9 +3,21 @@ import getQueryRecords from "@salesforce/apex/QueryController.getQueryRecords";
 export default class PicklistComponent extends LightningElement {
   searchTerm = "";
   results = [];
+  selectedRecord = [];
   isLoading = false;
   showPicklist = false;
   showNorecords = false;
+
+  handleClick(event) {
+    console.log(
+      "Selected Record = " + JSON.stringify(event.currentTarget.dataset)
+    );
+    this.selectedRecord = {
+      ...this.selectedRecord,
+      ...event.currentTarget.dataset
+    };
+    console.log(this.selectedRecord);
+  }
 
   handleChange(event) {
     let searchTerm = event.target.value;
