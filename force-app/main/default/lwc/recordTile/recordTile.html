@@ -2,7 +2,7 @@
   @description       : Record tile to display the selected record
   @author            : Abhinav Singh
   @group             : 
-  @last modified on  : 01-28-2024
+  @last modified on  : 02-03-2024
   @last modified by  : Abhinav Singh
 -->
 <template>
@@ -16,7 +16,7 @@
             <div class="slds-var-p-around_xx-small">
                 <ul>
                     <template for:each={displayRecord.fields} for:item="record">
-                        <li key={record.label}>
+                        <li key={record.label} onclick={handleSelectedData}>
                             <div class="slds-grid slds-gutters">
                                 <div class="slds-col slds-size_1-of-3">
                                     <span><strong>{record.label}</strong></span>

@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : Abhinav Singh
+ * @group             : 
+ * @last modified on  : 02-01-2024
+ * @last modified by  : Abhinav Singh
+**/
 // Use .apex files to store anonymous Apex.
 // You can execute anonymous Apex in VS Code by selecting the
 //     apex text and running the command:
@@ -8,3 +15,6 @@
 string tempvar = 'Enter_your_name_here';
 System.debug('Hello World!');
 System.debug('My name is ' + tempvar);
+
+UUID randomId = new UUID();
+System.debug(randomId.toString());
