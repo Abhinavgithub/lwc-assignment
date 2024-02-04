@@ -2,7 +2,7 @@
  * @description       : To fetch records from objects and pass to LWC
  * @author            : Abhinav Singh
  * @group             : 
- * @last modified on  : 01-28-2024
+ * @last modified on  : 02-04-2024
  * @last modified by  : Abhinav Singh
 **/
 public with sharing class QueryController {
@@ -38,6 +38,31 @@ public with sharing class QueryController {
                     System.debug('No records found');
                 }
             }
+            return JSON.serialize(record);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static string getAddress(String recordId, String type){
+        SObject record;
+        try {
+            switch on type {
+                when  'Account'{
+                    record = [SELECT Id, BillingAddress FROM Account WHERE Id = :recordId with USER_MODE];
+                }
+                when  'Contact'{
+                    record = [SELECT Id,MailingAddress from Contact WHERE Id = :recordId with USER_MODE];
+                }
+                when  'Lead'{
+                    record = [SELECT Id,Address from Lead WHERE Id = :recordId with USER_MODE];
+                }
+                when else {
+                    System.debug('No records found');
+                }
+            }
+            System.debug(JSON.serialize(record));
             return JSON.serialize(record);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

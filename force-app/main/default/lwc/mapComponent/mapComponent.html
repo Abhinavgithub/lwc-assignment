@@ -2,7 +2,7 @@
   @description       : Creating a map component
   @author            : Abhinav Singh
   @group             : 
-  @last modified on  : 02-03-2024
+  @last modified on  : 02-04-2024
   @last modified by  : Abhinav Singh
 -->
 <template>
@@ -10,5 +10,8 @@
         <div>
             recordId = {recordId}
         </div>
+        <template lwc:if={isMap}>
+            <lightning-map map-markers={mapMarkers}> </lightning-map>
+        </template>
     </article>
 </template>
