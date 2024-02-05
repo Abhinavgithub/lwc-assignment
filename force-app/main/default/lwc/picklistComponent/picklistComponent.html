@@ -20,8 +20,8 @@
 
         <!--card body-->
         <div class="slds-card__body slds-card__body_inner">
-            <div class="slds-grid slds-gutters">
-                <div class="slds-col slds-size_1-of-4">
+            <div class="slds-grid slds-grid_vertical">
+                <div class="slds-col">
                     <div class="slds-form-element slds-is-relative">
                         <label class="slds-form-element__label">Search Records</label>
                         <div class="slds-form-element__control">
@@ -115,10 +115,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="slds-col slds-size_2-of-4">
-                    <template for:each={selectedRecords} for:item="selectedRecord">
-                        <div key={selectedRecord.Id}>
-                            <c-record-tile selected-record={selectedRecord}></c-record-tile>
+                <div class="slds-col">
+                    <template lwc:if={selectedRecord}>
+                        <div class="slds-p-top_medium">
+                            <c-record-tile selected-record={selectedRecord} onclose={handleClose}></c-record-tile>
                         </div>
                     </template>
                 </div>

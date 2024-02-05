@@ -19,6 +19,11 @@ export default class RecordTile extends LightningElement {
     this.getRecord(this.selectedRecord.id, this.selectedRecord.type);
   }
 
+  handleClose(){
+    const closeEvent = new CustomEvent('close');
+    this.dispatchEvent(closeEvent);
+    }
+
   handleSelectedData(event) {
     const payload = {
       recordId: this.selectedRecord.id,
