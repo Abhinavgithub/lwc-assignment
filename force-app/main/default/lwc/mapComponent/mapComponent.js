@@ -19,6 +19,8 @@ export default class MapComponent extends LightningElement {
   zoom = "18";
   @wire(MessageContext)
   messageContext;
+  categoryValue = "";
+  radius = 5000;
 
   subscribeToMessageChannel() {
     if (!this.subscription) {
@@ -41,17 +43,37 @@ export default class MapComponent extends LightningElement {
     this.getMapAddress(this.recordId, this.recordType);
   }
 
+  get categoryOptions() {
+    return [
+      { label: "Accommodation", value: "accommodation" },
+      { label: "Activity", value: "activity" },
+      { label: "Commercial", value: "commercial" },
+      { label: "Catering", value: "catering" }
+    ];
+  }
+
+  handleCategoryChange(event) {
+    this.categoryValue = event.detail.value;
+    console.log(`categoryValue = ${this.categoryValue}`);
+  }
+
   async getMapAddress(recordId, recordType) {
     try {
       this.isLoading = true;
-      let city, country, postalCode, state, street = null;
+      let city,
+        country,
+        postalCode,
+        state,
+        street = null;
       console.log(`recordId = ${recordId}  recordType= ${recordType}`);
-      const address = JSON.parse(await getAddress({
-        recordId: recordId,
-        type: recordType
-      }));
+      const address = JSON.parse(
+        await getAddress({
+          recordId: recordId,
+          type: recordType
+        })
+      );
       console.log(`address = ${JSON.stringify(address)}`);
-      if (address.attributes.type == 'Contact') {
+      if (address.attributes.type == "Contact") {
         city = address.MailingAddress.city;
         country = address.MailingAddress.country;
         postalCode = address.MailingAddress.postalCode;
@@ -61,26 +83,30 @@ export default class MapComponent extends LightningElement {
       console.log(`${street} ${city} ${state} ${postalCode} ${country}`);
 
       var requestOptions = {
-        method: 'GET',
+        method: "GET"
       };
-      fetch(`https://api.geoapify.com/v1/geocode/search?text=${street} ${city} ${state} ${postalCode} ${country}&apiKey=8c64e7d0ddb446438ff13248172b3dcb`, requestOptions)
-        .then(response => response.json())
-        .then(result => { console.log(result);          
+      fetch(
+        `https://api.geoapify.com/v1/geocode/search?text=${street} ${city} ${state} ${postalCode} ${country}&apiKey=8c64e7d0ddb446438ff13248172b3dcb`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
           this.latitude = result.features[0].properties.lat;
           this.longitude = result.features[0].properties.lon;
           this.mapMarkers = [
             {
-                location: {
-                    Latitude: this.latitude,
-                    Longitude: this.longitude,
-                },
-            },            
-        ];
-        this.isLoading = false;        
-        this.isMap = true;  
-        console.log(`${this.latitude} ${this.longitude}`);
-         })
-        .catch(error => console.log('error', error));
+              location: {
+                Latitude: this.latitude,
+                Longitude: this.longitude
+              }
+            }
+          ];
+          this.isLoading = false;
+          this.isMap = true;
+          console.log(`${this.latitude} ${this.longitude}`);
+        })
+        .catch((error) => console.log("error", error));
     } catch (error) {
       this.error = error;
       console.log(`Error => ${error}`);

@@ -2,7 +2,7 @@
   @description       : Creating a map component
   @author            : Abhinav Singh
   @group             : 
-  @last modified on  : 02-08-2024
+  @last modified on  : 02-13-2024
   @last modified by  : Abhinav Singh
 -->
 <template>
@@ -33,13 +33,19 @@
                         <div class="slds-col">
                             <div class="slds-grid slds-wrap">
                                 <div class="slds-col">
-                                    <lightning-map map-markers={mapMarkers} zoom-level={zoom}> </lightning-map>
-                                    <div class="slds-col slds-grid slds-var-p-horizontal_medium">
-                                        <div class="slds-col slds-size_1-of-2">
-                                            Filters
+                                    <div class="slds-var-p-around_medium">
+                                        <lightning-map map-markers={mapMarkers} zoom-level={zoom}> </lightning-map>
+                                    </div>
+                                    <div class="slds-col slds-grid slds-gutters slds-var-p-horizontal_medium">
+                                        <div
+                                            class="slds-col slds-size_1-of-2 slds-var-p-around_medium slds-var-p-top_large">
+                                            <lightning-slider size="x-small" label="Radius" value={radius} min="5000"
+                                                max="10000" step="20"></lightning-slider>
                                         </div>
-                                        <div class="slds-col slds-size_1-of-2">
-                                            Search
+                                        <div class="slds-col slds-size_1-of-2 slds-var-p-around_medium">
+                                            <lightning-combobox label="Select Category" value={categoryValue}
+                                                placeholder="Select a value" options={categoryOptions}
+                                                onchange={handleCategoryChange}></lightning-combobox>
                                         </div>
                                     </div>
                                 </div>
