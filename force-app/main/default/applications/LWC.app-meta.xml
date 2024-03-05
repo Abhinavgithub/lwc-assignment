@@ -2,11 +2,8 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
         <headerColor>#0070D2</headerColor>
-        <logo>topgame</logo>
-        <logoVersion>1</logoVersion>
-        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>app for LWC components</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
@@ -16,5 +13,5 @@
     <navType>Standard</navType>
     <tabs>LWC_Assignment</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>undefined_UtilityBar</utilityBar>
+    <utilityBar>LWC_UtilityBar</utilityBar>
 </CustomApplication>

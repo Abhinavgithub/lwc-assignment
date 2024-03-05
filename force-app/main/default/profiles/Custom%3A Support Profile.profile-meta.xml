@@ -12,7 +12,7 @@
     <custom>true</custom>
     <tabVisibilities>
         <tab>LWC_Assignment</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>

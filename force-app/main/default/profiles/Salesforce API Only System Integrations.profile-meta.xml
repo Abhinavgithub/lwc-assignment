@@ -9,7 +9,7 @@
         <apexClass>QueryController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <custom>false</custom>
+    <custom>true</custom>
     <tabVisibilities>
         <tab>LWC_Assignment</tab>
         <visibility>Hidden</visibility>
